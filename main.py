@@ -29,12 +29,7 @@ class FairyPlugin(Star):
     async def test(self, event: AstrMessageEvent):
         from astrbot.api.message_components import Node, Plain, Image
         node = Node(
-            uin=905617992,
-            name="Soulter",
-            content=[
-                Plain("hi"),
-                Plain("测试消息")
-            ]
+            uin=1653990737, name="AAA赫尔墨斯装置批发", content=[Plain("少羽"), Plain("一点也不牛逼")]
         )
         yield event.chain_result([node])
 
