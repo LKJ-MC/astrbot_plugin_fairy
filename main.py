@@ -19,17 +19,11 @@ class MyPlugin(Star):
         logger.info(message_chain)
         yield event.plain_result(f"你好, {user_name}, 绝区零登顶！")
 
-    @filter.command("esu")
-    async def esu(self, event: AstrMessageEvent):
-        chain = [
-            Comp.At(qq=event.get_sender_id()),  # At 消息发送者
-            Comp.Plain("来看这个图："),
-            Comp.Image.fromFileSystem(
-                r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\logo.png"
-            ),  # 从本地文件目录发送图片
-            Comp.Plain("这是一个图片。"),
-        ]
-        yield event.chain_result(chain)
+    @filter.command("image") # 注册一个 /image 指令，接收 text 参数。
+    async def on_aiocqhttp(self, event: AstrMessageEvent, text: str):
+        url = await self.text_to_image(text) # text_to_image() 是 Star 类的一个方法。
+        # path = await self.text_to_image(text, return_url = False) # 如果你想保存图片到本地
+        yield event.image_result(url)
 
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
