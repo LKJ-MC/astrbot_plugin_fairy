@@ -31,7 +31,8 @@ class FairyPlugin(Star):
         node = Node(
             uin=uin, name=name, content=[Plain(text)]
         )
-        yield event.chain_result([node])
+        node2 = Node(uin=uin, name=name, content=[Plain("测试")])
+        yield event.chain_result([node, node2])
 
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
