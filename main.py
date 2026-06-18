@@ -24,9 +24,6 @@ class MyPlugin(Star):
         chain = [
             Comp.At(qq=event.get_sender_id()),  # At 消息发送者
             Comp.Plain("来看这个图："),
-            Comp.Image.fromURL(
-                "https://tse3-mm.cn.bing.net/th/id/OIP-C.igCXcvZXMJxkRfuTSR18FAAAAA?w=155&h=180&c=7&r=0&o=7&cb=thfc1falcon2&dpr=1.3&pid=1.7&rm=3"
-            ),  # 从 URL 发送图片
             Comp.Image.fromFileSystem("logo.png"),  # 从本地文件目录发送图片
             Comp.Plain("这是一个图片。"),
         ]
