@@ -25,6 +25,23 @@ class FairyPlugin(Star):
         # path = await self.text_to_image(text, return_url = False) # 如果你想保存图片到本地
         yield event.image_result(url)
 
+    @filter.command("get")
+    async def get(self, event: AstrMessageEvent, text: str):
+        chain = [
+            Comp.At(qq=event.get_sender_id()),  # At 消息发送者
+            Comp.Plain("年度校草写真："),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\1.png"),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\2.png"),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\3.png"),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\4.jpg"),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\5.png"),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\6.jpg"),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\7.png"),
+            Comp.Image.fromFileSystem(r"D:\Project\AstrBot\data\plugins\astrbot_plugin_fairy\data\8.png"),
+            Comp.Plain("已严肃观看"),
+        ]
+        yield event.chain_result(chain)
+
     @filter.command("fakechat")
     async def fakechat(self, event: AstrMessageEvent, uin: int, name: str, text: str):
         from astrbot.api.message_components import Node, Plain, Image
