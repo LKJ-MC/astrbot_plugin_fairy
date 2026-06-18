@@ -25,6 +25,19 @@ class FairyPlugin(Star):
         # path = await self.text_to_image(text, return_url = False) # 如果你想保存图片到本地
         yield event.image_result(url)
 
+    @filter.command("test")
+    async def test(self, event: AstrMessageEvent):
+        from astrbot.api.message_components import Node, Plain, Image
+        node = Node(
+            uin=905617992,
+            name="Soulter",
+            content=[
+                Plain("hi"),
+                Plain("测试消息")
+            ]
+        )
+        yield event.chain_result([node])
+
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
         pass
