@@ -4,7 +4,7 @@ from astrbot.api import logger
 import astrbot.api.message_components as Comp
 
 @register("Zenless Zone Zore", "LK", "一个简单的 Fairy 插件", "1.0.0")
-class MyPlugin(Star):
+class FairyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
 
