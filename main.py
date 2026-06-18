@@ -25,11 +25,11 @@ class FairyPlugin(Star):
         # path = await self.text_to_image(text, return_url = False) # 如果你想保存图片到本地
         yield event.image_result(url)
 
-    @filter.command("test")
-    async def test(self, event: AstrMessageEvent):
+    @filter.command("fakechat")
+    async def fakechat(self, event: AstrMessageEvent, uin: int, name: str, text: str):
         from astrbot.api.message_components import Node, Plain, Image
         node = Node(
-            uin=1653990737, name="AAA赫尔墨斯装置批发", content=[Plain("少羽"), Plain("一点也不牛逼")]
+            uin=uin, name=name, content=[Plain(text)]
         )
         yield event.chain_result([node])
 
