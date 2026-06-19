@@ -21,7 +21,7 @@ class FairyPlugin(Star):
     @filter.command("getsauth")
     async def getsauth(self, event: AstrMessageEvent, num: int):
         yield event.plain_result("发送中...")
-        target_umo = "aiocqhttp:friend:3931028976"
+        target_umo = "人工智能Fairy:FriendMessage:3931028976"
         for _ in range(num):
             await self.context.send_message(
                 target_umo, MessageChain([Plain("/generate")])
