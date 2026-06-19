@@ -14,17 +14,14 @@ class FairyPlugin(Star):
         """可选择实现异步的插件初始化方法，当实例化该插件类之后会自动调用该方法。"""
         pass
 
-    @filter.command("zzz")
-    async def zzz(self, event: AstrMessageEvent):
-        user_name = event.get_sender_name()
-        message_chain = event.get_messages()
-        logger.info(message_chain)
-        yield event.plain_result(f"你好, {user_name}, 绝区零登顶！")
+    @filter.command("test")
+    async def test(self, event: AstrMessageEvent):
+        print(event.unified_msg_origin)
 
     @filter.command("getsauth")
     async def getsauth(self, event: AstrMessageEvent, num: int):
         yield event.plain_result("发送中...")
-        target_umo = "aiocqhttp:private:3931028976"
+        target_umo = "aiocqhttp:friend:3931028976"
         for _ in range(num):
             await self.context.send_message(
                 target_umo, MessageChain([Plain("/generate")])
