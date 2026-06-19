@@ -15,12 +15,8 @@ class FairyPlugin(Star):
         pass
 
     @filter.event_message_type(filter.EventMessageType.ALL)
-    async def test(self, event: AstrMessageEvent):
-        await self.context.send_message(
-            "人工智能Fairy:FriendMessage:3197538139",
-            MessageChain([Plain(f"发送者ID: {event.get_sender_id()}\n消息内容: {event.message_str}")]),
-        )
-        if "sauth_json" in event.message_str and "4399mix" in event.message_str:
+    async def receive_sauth(self, event: AstrMessageEvent):
+        if event.get_sender_id() == "3931028976" and "sauth_json" in event.message_str and "4399mix" in event.message_str:
             await self.context.send_message(
                 "人工智能Fairy:FriendMessage:3197538139",
                 MessageChain([Plain(
