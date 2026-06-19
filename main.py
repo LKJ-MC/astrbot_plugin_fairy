@@ -4,6 +4,8 @@ from astrbot.api.message_components import Plain
 from astrbot.api import logger
 from astrbot.core.message.message_event_result import MessageChain
 from astrbot.api.message_components import Node, Plain, Image
+import time
+import os
 
 @register("Zenless Zone Zore", "LK", "一个简单的 Fairy 插件", "1.0.0")
 class FairyPlugin(Star):
@@ -17,10 +19,15 @@ class FairyPlugin(Star):
     @filter.event_message_type(filter.EventMessageType.ALL)
     async def receive_sauth(self, event: AstrMessageEvent):
         if event.get_sender_id() == "3931028976" and "sauth_json" in event.message_str and "4399mix" in event.message_str:
+            sauth = event.message_str.split("\n")[3]
+            name = f"{int(time.time() * 1000)}.txt"
+            path = os.path.join(r"D:\Game\Minecraft\Sauth\恶俗", name)
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(sauth.strip())
             await self.context.send_message(
                 "人工智能Fairy:FriendMessage:3197538139",
                 MessageChain([Plain(
-                    event.message_str.split('\n')[3]
+                    "收到sauth，已保存到：" + path
                 )]),
             )
 
