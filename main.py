@@ -20,8 +20,8 @@ class FairyPlugin(Star):
             "人工智能Fairy:FriendMessage:3197538139",
             MessageChain([Plain(event.get_sender_id())]),
         )
-        if not event.message_str.startswith("/") and event.get_sender_id() == 3931028976:
-            if "sauth_json" in event.message_str:
+        if not event.message_str.startswith("/"):
+            if "sauth_json" in event.message_str and "4399mix" in event.message_str:
                 await self.context.send_message(
                     "人工智能Fairy:FriendMessage:3197538139",
                     MessageChain([Plain(
